@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome Push",
+  "version": "2.0",
+  "description": "webpush demo",
+  "icons": {
+    "128": "icons/icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "notifications",
+    "tabs",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["lib/webSdkExtension.produce.min.3.2.0.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["init-sdk.js", "demo.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "lib/swExtension.produce.min.3.2.0.js"
+  }
+}
